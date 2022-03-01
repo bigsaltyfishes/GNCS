@@ -7,15 +7,25 @@
 
 #include <iostream>
 #include <list>
+#include <json/value.h>
 
-class Command
-{
+class Command {
 public:
     Command(std::string cmd);
+
     ~Command();
+
     std::string *ToString();
+
     std::string cmd;
-    std::list<std::string*> args;
+    std::list<std::string *> args;
+    static Json::Value Actions;
+
+    void Exec(char *Content);
+
+private:
+    void CustomExecInit();
+
 };
 
 #endif //GNCS_COMMAND_H
