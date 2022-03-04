@@ -10,6 +10,8 @@
 #define Controller 1
 #define Reciver 2
 
+#include <iostream>
+
 class Client {
 public:
     Client(int _Type, int _Connection, int _ID) : Type(_Type), Connection(_Connection), ID(_ID) {};
@@ -24,12 +26,12 @@ public:
         return ID;
     }
 
-    const std::string &getName() {
+    std::string getName() {
         return Name;
     }
 
-    int *getConnection() {
-        return &Connection;
+    int getConnection() {
+        return Connection;
     }
 
     Client &operator=(int _Type) {

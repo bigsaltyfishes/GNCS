@@ -21,7 +21,7 @@ public:
     std::list<std::string *> args;
     static Json::Value Actions;
 
-    void Exec(char *Content);
+    void Exec(std::string Content);
 
 private:
     void CustomExecInit();

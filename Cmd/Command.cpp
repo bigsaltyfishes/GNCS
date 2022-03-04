@@ -4,38 +4,26 @@
 
 #include <Command.h>
 
-Command::Command(std::string cmd) {
+Command::Command(std::string _cmd) {
     std::string *tmp = new std::string;
-    for (std::string::iterator it = cmd.begin(); it != cmd.end(); it++) {
-        if (cmd.empty()) {
-            while (*it++ != ' ') {
-                cmd += *it;
-            }
-        }
-        if (*it == '\"') {
-            it++;
-            while (*it != '\"') {
-                *tmp += *it;
-                it++;
-            }
-            args.push_back(tmp);
-            tmp = new std::string;
-            it++;
-        }
-        if (*it == ' ') {
-            it++;
-            while (*it != ' ') {
-                *tmp += *it;
-                it++;
-            }
+    for (std::string::iterator it = _cmd.begin(); it != _cmd.end(); it++) {
+        if ((*it) != ' ') {
+            *tmp += *it;
+        } else {
             args.push_back(tmp);
             tmp = new std::string;
         }
     }
-    if (cmd.empty()) {
-        delete tmp;
+    if (args.back() != tmp)
+        args.push_back(tmp);
+    cmd = *args.front();
+    args.pop_front();
+    std::cout << cmd << std::endl;
+    for (std::list<std::string *>::iterator it = args.begin(); it != args.end(); it++) {
+        std::cout << **it << std::endl;
     }
 }
+
 
 Command::~Command() {
     for (std::list<std::string *>::iterator it = args.begin(); it != args.end(); it++) {
